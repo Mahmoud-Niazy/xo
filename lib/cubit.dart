@@ -18,6 +18,10 @@ class XoCubit extends Cubit<XoStates>{
 
   int count = 0;
 
+
+
+
+
   Play1(){
     if(count %2 ==0){
       t1 = 'X' ;
@@ -136,6 +140,10 @@ class XoCubit extends Cubit<XoStates>{
     }
   }
 
+
+
+
+
   CheckWinner(){
     if(
     t1==t2 && t2==t3 && t1!='' && t2!='' && t3 != ''
@@ -155,6 +163,8 @@ class XoCubit extends Cubit<XoStates>{
     t3==t5 && t5==t7 && t5!='' && t7!='' && t3 != ''
     )
     {
+
+       emit(WinState());
        t1= '';
        t2 ='';
        t3 ='';
@@ -164,7 +174,186 @@ class XoCubit extends Cubit<XoStates>{
        t7 ='';
        t8 ='';
        t9 ='';
-       emit(WinState());
+       return  1;
+
     }
   }
+
+
+  AutoPlay(){
+    if(t1=='X' && t2 =='X' && t3.isEmpty){
+      Play3();
+      return 1;
+    }
+    if(t3=='X' && t2 =='X' && t1.isEmpty){
+      Play1();
+      return 1;
+    }
+    if(t3=='X' && t1 =='X' && t2.isEmpty){
+      Play2();
+      return 1;
+    }
+
+     if(t4=='X' && t5 =='X' && t6.isEmpty){
+      Play6();
+      return 1;
+
+     }
+    if(t6=='X' && t5 =='X' && t4.isEmpty){
+      Play4();
+      return 1;
+    }
+    if(t6=='X' && t4 =='X' && t5.isEmpty){
+      Play5();
+      return 1;
+    }
+
+     if(t8=='X' && t7 =='X' && t9.isEmpty){
+      Play9();
+      return 1;
+
+     }
+    if(t8=='X' && t9 =='X' && t7.isEmpty){
+      Play7();
+      return 1;
+
+    }
+    if(t7=='X' && t9 =='X' && t8.isEmpty){
+      Play8();
+      return 1;
+
+    }
+
+     if(t1=='X' && t4 =='X' && t7.isEmpty){
+      Play7();
+      return 1;
+
+     }
+    if(t7=='X' && t4 =='X' && t1.isEmpty){
+      Play1();
+      return 1;
+
+    }
+    if(t7=='X' && t1 =='X' && t4.isEmpty){
+      Play4();
+      return 1;
+
+    }
+
+     if(t5=='X' && t2 =='X' && t8.isEmpty){
+      Play8();
+      return 1;
+
+
+     }
+    if(t5=='X' && t8 =='X' && t2.isEmpty){
+      Play2();
+      return 1;
+    }
+    if(t2=='X' && t8 =='X' && t5.isEmpty){
+      Play5();
+      return 1;
+    }
+
+     if(t3=='X' && t6 =='X' && t9.isEmpty){
+      Play9();
+      return 1;
+
+     }
+    if(t9=='X' && t6 =='X' && t3.isEmpty){
+      Play3();
+      return 1;
+
+    }
+    if(t9=='X' && t3 =='X' && t6.isEmpty){
+      Play6();
+      return 1;
+
+    }
+      if(t1=='X' && t5 =='X' && t9.isEmpty){
+      Play9();
+      return 1;
+
+      }
+    if(t9=='X' && t5 =='X' && t1.isEmpty){
+      Play1();
+      return 1;
+
+    }
+    if(t9=='X' && t1 =='X' && t5.isEmpty){
+      Play5();
+      return 1;
+
+    }
+     if(t3=='X' && t5 =='X' && t7.isEmpty){
+      Play7();
+      return 1;
+     }
+    if(t7=='X' && t5 =='X' && t3.isEmpty){
+      Play3();
+      return 1;
+    }
+    if(t7=='X' && t3 =='X' && t5.isEmpty){
+      Play5();
+      return 1;
+    }
+     if(t1.isEmpty){
+       Play1();
+       return 1;
+     }
+    if(t2.isEmpty){
+      Play2();
+      return 1;
+    }if(t3.isEmpty){
+      Play3();
+      return 1;
+    }if(t4.isEmpty){
+      Play4();
+      return 1;
+    }if(t5.isEmpty){
+      Play5();
+      return 1;
+    }if(t6.isEmpty){
+      Play6();
+      return 1;
+    }if(t7.isEmpty){
+      Play7();
+      return 1;
+    }if(t8.isEmpty){
+      Play8();
+      return 1;
+    }if(t9.isEmpty){
+      Play9();
+      return 1;
+    }
+
+  }
+
+NoWinner(){
+    if(t1.isNotEmpty&&
+        t2.isNotEmpty&&
+        t3.isNotEmpty&&
+        t4.isNotEmpty&&
+        t5.isNotEmpty&&
+        t6.isNotEmpty&&
+        t7.isNotEmpty&&
+        t8.isNotEmpty&&
+        t9.isNotEmpty&&
+    state is! WinState
+    ){
+      emit(NoWinnerState());
+      t1= '';
+      t2 ='';
+      t3 ='';
+      t4 ='';
+      t5 ='';
+      t6 ='';
+      t7 ='';
+      t8 ='';
+      t9 ='';
+      return  1;
+    }
+}
+
+
 }
